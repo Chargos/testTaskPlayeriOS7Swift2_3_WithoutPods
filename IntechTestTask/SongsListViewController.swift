@@ -7,16 +7,13 @@
 //
 
 import UIKit
-//itunes.apple.com/search?term=SEARCH_KEYWORD),
 
 class SongsListViewController: UIViewController {
-    
     @IBOutlet weak var tableView: UITableView!
     private var songs = [SongModel]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.sectionHeaderHeight = 1
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,9 +29,13 @@ class SongsListViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
         super.viewWillDisappear(animated)
     }
-    
-    
 
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let vc = segue.destinationViewController as? PlayerViewController, cell = sender as? UITableViewCell, indexPath = self.tableView.indexPathForCell(cell) where songs.count > indexPath.row {
+            vc.song = songs[indexPath.row]
+        }
+    }
+    
 }
 
 extension SongsListViewController: UITableViewDataSource {
@@ -43,11 +44,26 @@ extension SongsListViewController: UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .Subtitle, reuseIdentifier: nil)
-        cell.textLabel?.text = songs[indexPath.row].trackName
-        cell.detailTextLabel?.text = songs[indexPath.row].artistName
-        cell.imageView?.image = songs[indexPath.row].image
+        let cell = tableView.dequeueReusableCellWithIdentifier("SongTableViewCell", forIndexPath: indexPath) as! SongTableViewCell
+        cell.songTitle?.text = songs[indexPath.row].trackName
+        cell.artistName?.text = songs[indexPath.row].artistName
+        cell.songImage?.image = songs[indexPath.row].smallImageObject.0
         return cell
+    }
+    
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        if let cell = cell as? SongTableViewCell, url = NSURL(string: songs[indexPath.row].artworkUrl60) where songs[indexPath.row].smallImageObject.1 == ImageDownloadingStatus.notLoaded {
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+                self.songs[indexPath.row].smallImageObject.1 = .loadingInProgress
+                let data = NSData(contentsOfURL: url)
+                dispatch_async(dispatch_get_main_queue(), {
+                    if let data = data, image = UIImage(data: data) where self.songs.count > indexPath.row && NSURL(string: self.songs[indexPath.row].artworkUrl60) == url {
+                        self.songs[indexPath.row].smallImageObject = (image, .loaded)
+                        cell.songImage?.image = image
+                    }
+                })
+            }
+        }
     }
     
 }
@@ -55,16 +71,9 @@ extension SongsListViewController: UITableViewDataSource {
 extension SongsListViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         performSegueWithIdentifier("showPlayerViewController", sender: tableView.cellForRowAtIndexPath(indexPath))
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
-}
-
-struct SongModel {
-    var artistName = ""
-    var trackName = ""
-    var artworkUrl60 = ""
-    var artworkUrl100 = ""
-    var image: UIImage?
 }
 
 extension SongsListViewController: UISearchBarDelegate {
@@ -74,36 +83,18 @@ extension SongsListViewController: UISearchBarDelegate {
             request.HTTPMethod = "POST"
             let postString = "term=" + searchText
             request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding)
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = true
             let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { data, response, error in
-                guard error == nil && data != nil else {
-                    print("error=\(error)")
-                    return
-                }
-                
-                if let httpStatus = response as? NSHTTPURLResponse where httpStatus.statusCode != 200 {
-                    print("statusCode should be 200, but is \(httpStatus.statusCode)")
-                    print("response = \(response)")
-                }
-                
-                let json = JSON(data: data!)
-                if let userName = json["results"][0]["artistName"].string {
-                    
-                    print(userName)
-                    //Now you got your value
-                }
-                
+                guard let data = data where error == nil else { return }
+                let json = JSON(data: data)
                 dispatch_async(dispatch_get_main_queue()) {
+                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                     self.songs = []
                     if let results = json["results"].array {
                         results.forEach { song in
-                            
-                            let url = NSURL(string: song["artworkUrl60"].string ?? "")
-                            let data = NSData(contentsOfURL: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check
-                            
-                            self.songs.append(SongModel(artistName: song["artistName"].string ?? "", trackName: song["trackName"].string ?? "", artworkUrl60: song["artworkUrl60"].string ?? "", artworkUrl100: song["artworkUrl100"].string ?? "", image: UIImage(data: data ?? NSData())))
+                            self.songs.append(SongModel(artistName: song["artistName"].string ?? "", trackName: song["trackName"].string ?? "", artworkUrl60: song["artworkUrl60"].string ?? "", artworkUrl100: song["artworkUrl100"].string ?? "", smallImageObject: (nil, .notLoaded), bigImage: nil))
                         }
                     }
-                
                     self.tableView.reloadData()
                 }
                 
@@ -111,7 +102,5 @@ extension SongsListViewController: UISearchBarDelegate {
             task.resume()
         }
     }
-    
-    
     
 }
