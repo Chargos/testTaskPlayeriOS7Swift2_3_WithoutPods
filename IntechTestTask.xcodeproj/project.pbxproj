@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A0B1EB61D8B13E500751828 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 0A0B1EB51D8B13E500751828 /* Podfile */; };
+		0A0B1EB81D8B206F00751828 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0B1EB71D8B206F00751828 /* SwiftyJSON.swift */; };
 		405607CE1D8ACFD200965AF3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405607CD1D8ACFD200965AF3 /* AppDelegate.swift */; };
 		405607D01D8ACFD200965AF3 /* SongsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405607CF1D8ACFD200965AF3 /* SongsListViewController.swift */; };
 		405607D31D8ACFD200965AF3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 405607D11D8ACFD200965AF3 /* Main.storyboard */; };
@@ -14,9 +16,12 @@
 		405607D81D8ACFD200965AF3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 405607D61D8ACFD200965AF3 /* LaunchScreen.storyboard */; };
 		405607E01D8AEADB00965AF3 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405607DF1D8AEADB00965AF3 /* PlayerViewController.swift */; };
 		405607E41D8AEE0900965AF3 /* SongTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405607E31D8AEE0900965AF3 /* SongTableViewCell.swift */; };
+		81DDDB4FBFEF4E837103B04B /* libPods-IntechTestTask.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 70192763988BFCCDD31784C3 /* libPods-IntechTestTask.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A0B1EB51D8B13E500751828 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		0A0B1EB71D8B206F00751828 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		405607CA1D8ACFD100965AF3 /* IntechTestTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IntechTestTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		405607CD1D8ACFD200965AF3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		405607CF1D8ACFD200965AF3 /* SongsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsListViewController.swift; sourceTree = "<group>"; };
@@ -26,6 +31,9 @@
 		405607D91D8ACFD200965AF3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		405607DF1D8AEADB00965AF3 /* PlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		405607E31D8AEE0900965AF3 /* SongTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongTableViewCell.swift; sourceTree = "<group>"; };
+		4543B5BF32092787E7736307 /* Pods-IntechTestTask.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IntechTestTask.debug.xcconfig"; path = "Pods/Target Support Files/Pods-IntechTestTask/Pods-IntechTestTask.debug.xcconfig"; sourceTree = "<group>"; };
+		70192763988BFCCDD31784C3 /* libPods-IntechTestTask.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-IntechTestTask.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A8B44819341EC08487721DF /* Pods-IntechTestTask.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IntechTestTask.release.xcconfig"; path = "Pods/Target Support Files/Pods-IntechTestTask/Pods-IntechTestTask.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,17 +41,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81DDDB4FBFEF4E837103B04B /* libPods-IntechTestTask.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F02CF277893D36FCA3E82FD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				70192763988BFCCDD31784C3 /* libPods-IntechTestTask.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		405607C11D8ACFD100965AF3 = {
 			isa = PBXGroup;
 			children = (
+				0A0B1EB51D8B13E500751828 /* Podfile */,
 				405607CC1D8ACFD200965AF3 /* IntechTestTask */,
 				405607CB1D8ACFD100965AF3 /* Products */,
+				BBFECCE040CED0FCCAB51E6C /* Pods */,
+				1F02CF277893D36FCA3E82FD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,6 +78,7 @@
 		405607CC1D8ACFD200965AF3 /* IntechTestTask */ = {
 			isa = PBXGroup;
 			children = (
+				0A0B1EB71D8B206F00751828 /* SwiftyJSON.swift */,
 				405607E31D8AEE0900965AF3 /* SongTableViewCell.swift */,
 				405607CD1D8ACFD200965AF3 /* AppDelegate.swift */,
 				405607CF1D8ACFD200965AF3 /* SongsListViewController.swift */,
@@ -70,6 +91,15 @@
 			path = IntechTestTask;
 			sourceTree = "<group>";
 		};
+		BBFECCE040CED0FCCAB51E6C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4543B5BF32092787E7736307 /* Pods-IntechTestTask.debug.xcconfig */,
+				9A8B44819341EC08487721DF /* Pods-IntechTestTask.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -77,9 +107,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 405607DC1D8ACFD200965AF3 /* Build configuration list for PBXNativeTarget "IntechTestTask" */;
 			buildPhases = (
+				23D7A0CD814516CBA9003AB7 /* [CP] Check Pods Manifest.lock */,
 				405607C61D8ACFD100965AF3 /* Sources */,
 				405607C71D8ACFD100965AF3 /* Frameworks */,
 				405607C81D8ACFD100965AF3 /* Resources */,
+				168871DEFF845B9013A864A3 /* [CP] Embed Pods Frameworks */,
+				7B7BFDC931BDCB2601344BB6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -128,6 +161,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A0B1EB61D8B13E500751828 /* Podfile in Resources */,
 				405607D81D8ACFD200965AF3 /* LaunchScreen.storyboard in Resources */,
 				405607D51D8ACFD200965AF3 /* Assets.xcassets in Resources */,
 				405607D31D8ACFD200965AF3 /* Main.storyboard in Resources */,
@@ -135,6 +169,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		168871DEFF845B9013A864A3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-IntechTestTask/Pods-IntechTestTask-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		23D7A0CD814516CBA9003AB7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		7B7BFDC931BDCB2601344BB6 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-IntechTestTask/Pods-IntechTestTask-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		405607C61D8ACFD100965AF3 /* Sources */ = {
@@ -144,6 +226,7 @@
 				405607E41D8AEE0900965AF3 /* SongTableViewCell.swift in Sources */,
 				405607D01D8ACFD200965AF3 /* SongsListViewController.swift in Sources */,
 				405607CE1D8ACFD200965AF3 /* AppDelegate.swift in Sources */,
+				0A0B1EB81D8B206F00751828 /* SwiftyJSON.swift in Sources */,
 				405607E01D8AEADB00965AF3 /* PlayerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -255,6 +338,7 @@
 		};
 		405607DD1D8ACFD200965AF3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4543B5BF32092787E7736307 /* Pods-IntechTestTask.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = IntechTestTask/Info.plist;
@@ -267,6 +351,7 @@
 		};
 		405607DE1D8ACFD200965AF3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A8B44819341EC08487721DF /* Pods-IntechTestTask.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = IntechTestTask/Info.plist;
@@ -296,6 +381,7 @@
 				405607DE1D8ACFD200965AF3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
