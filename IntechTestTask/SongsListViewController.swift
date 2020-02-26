@@ -9,6 +9,10 @@
 import UIKit
 
 class SongsListViewController: UIViewController {
+    
+    private let serverURL = NSURL(string: "https://itunes.apple.com/search?")!
+    private let meaningfulCharCount = 5
+    
     @IBOutlet weak var tableView: UITableView!
     private var songs = [SongModel]()
 
@@ -34,6 +38,29 @@ class SongsListViewController: UIViewController {
         if let vc = segue.destinationViewController as? PlayerViewController, cell = sender as? UITableViewCell, indexPath = self.tableView.indexPathForCell(cell) where songs.count > indexPath.row {
             vc.song = songs[indexPath.row]
         }
+    }
+    
+    func loadSongs(searchText searchText:String) {
+        let request = NSMutableURLRequest(URL: serverURL)
+        request.HTTPMethod = "POST"
+        request.HTTPBody = ("term=" + searchText).dataUsingEncoding(NSUTF8StringEncoding)
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { data, response, error in
+            guard let data = data where error == nil else { return }
+            let json = JSON(data: data)
+            dispatch_async(dispatch_get_main_queue()) {
+                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                self.songs = []
+                if let results = json["results"].array {
+                    results.forEach { song in
+                        self.songs.append(SongModel(artistName: song["artistName"].string ?? "", trackName: song["trackName"].string ?? "", artworkUrl60: song["artworkUrl60"].string ?? "", artworkUrl100: song["artworkUrl100"].string ?? "", smallImageObject: (nil, .notLoaded), bigImage: nil))
+                    }
+                }
+                self.tableView.reloadData()
+            }
+            
+        }
+        task.resume()
     }
     
 }
@@ -70,36 +97,16 @@ extension SongsListViewController: UITableViewDataSource {
 
 extension SongsListViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        performSegueWithIdentifier("showPlayerViewController", sender: tableView.cellForRowAtIndexPath(indexPath))
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        view.endEditing(true)
     }
     
 }
 
 extension SongsListViewController: UISearchBarDelegate {
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText.characters.count >= 5 {
-            let request = NSMutableURLRequest(URL: NSURL(string: "https://itunes.apple.com/search?")!)
-            request.HTTPMethod = "POST"
-            let postString = "term=" + searchText
-            request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding)
-            UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-            let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { data, response, error in
-                guard let data = data where error == nil else { return }
-                let json = JSON(data: data)
-                dispatch_async(dispatch_get_main_queue()) {
-                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-                    self.songs = []
-                    if let results = json["results"].array {
-                        results.forEach { song in
-                            self.songs.append(SongModel(artistName: song["artistName"].string ?? "", trackName: song["trackName"].string ?? "", artworkUrl60: song["artworkUrl60"].string ?? "", artworkUrl100: song["artworkUrl100"].string ?? "", smallImageObject: (nil, .notLoaded), bigImage: nil))
-                        }
-                    }
-                    self.tableView.reloadData()
-                }
-                
-            }
-            task.resume()
+        if searchText.characters.count >= meaningfulCharCount {
+            loadSongs(searchText: searchText)
         }
     }
     

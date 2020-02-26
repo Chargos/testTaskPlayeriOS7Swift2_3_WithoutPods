@@ -14,10 +14,10 @@ public enum ImageDownloadingStatus {
 }
 
 public struct SongModel {
-    var artistName = ""
-    var trackName = ""
-    var artworkUrl60 = ""
-    var artworkUrl100 = ""
+    var artistName: String
+    var trackName: String
+    var artworkUrl60: String
+    var artworkUrl100: String
     var smallImageObject: (UIImage?, ImageDownloadingStatus)
     var bigImage: UIImage?
 }

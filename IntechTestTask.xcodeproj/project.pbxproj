@@ -43,6 +43,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4047B01E1D8C0D6600CD7772 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				0A0B1EB71D8B206F00751828 /* SwiftyJSON.swift */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		4047B01F1D8C0D8F00CD7772 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				405607D41D8ACFD200965AF3 /* Assets.xcassets */,
+				405607D61D8ACFD200965AF3 /* LaunchScreen.storyboard */,
+				405607D91D8ACFD200965AF3 /* Info.plist */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
 		405607C11D8ACFD100965AF3 = {
 			isa = PBXGroup;
 			children = (
@@ -62,16 +80,14 @@
 		405607CC1D8ACFD200965AF3 /* IntechTestTask */ = {
 			isa = PBXGroup;
 			children = (
-				0A0B1EB71D8B206F00751828 /* SwiftyJSON.swift */,
+				4047B01F1D8C0D8F00CD7772 /* Assets */,
+				4047B01E1D8C0D6600CD7772 /* Utils */,
 				405607E31D8AEE0900965AF3 /* SongTableViewCell.swift */,
-				405607CD1D8ACFD200965AF3 /* AppDelegate.swift */,
 				405607CF1D8ACFD200965AF3 /* SongsListViewController.swift */,
 				405607DF1D8AEADB00965AF3 /* PlayerViewController.swift */,
-				405607D11D8ACFD200965AF3 /* Main.storyboard */,
-				405607D41D8ACFD200965AF3 /* Assets.xcassets */,
-				405607D61D8ACFD200965AF3 /* LaunchScreen.storyboard */,
-				405607D91D8ACFD200965AF3 /* Info.plist */,
 				4047B01C1D8C0C7A00CD7772 /* SongModel.swift */,
+				405607D11D8ACFD200965AF3 /* Main.storyboard */,
+				405607CD1D8ACFD200965AF3 /* AppDelegate.swift */,
 			);
 			path = IntechTestTask;
 			sourceTree = "<group>";

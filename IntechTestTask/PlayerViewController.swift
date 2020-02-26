@@ -11,6 +11,13 @@ import Foundation
 
 class PlayerViewController: UIViewController {
     
+    @IBOutlet private weak var artistImage: UIImageView!
+    @IBOutlet private weak var artistNameLabel: UILabel!
+    @IBOutlet private weak var songTitleLabel: UILabel!
+    @IBOutlet private weak var playPauseButton: UIButton!
+    
+    var song: SongModel?
+    
     private let playText = "Play"
     private let pauseText = "Pause"
     private var isPlayText = true {
@@ -19,18 +26,12 @@ class PlayerViewController: UIViewController {
         }
     }
     
-    @IBOutlet private weak var artistImage: UIImageView!
-    @IBOutlet private weak var artistNameLabel: UILabel!
-    @IBOutlet private weak var songTitleLabel: UILabel!
-    @IBOutlet private weak var playPauseButton: UIButton!
-    
-    var song: SongModel?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        isPlayText = true
         if let song = song {
-            isPlayText = true
+            title = song.trackName
             artistNameLabel.text = song.artistName
             songTitleLabel.text = song.trackName
             setArtistImage(song: song)
@@ -40,10 +41,6 @@ class PlayerViewController: UIViewController {
     
     @IBAction func playerButtonPressed(sender: AnyObject) {
         isPlayText = !isPlayText
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
     
     func setArtistImage(song song:SongModel) {
@@ -59,6 +56,10 @@ class PlayerViewController: UIViewController {
                 })
             }
         }
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
     }
     
 }

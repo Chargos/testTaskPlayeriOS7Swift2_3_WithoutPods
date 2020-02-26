@@ -43,7 +43,7 @@
                                                         <constraint firstAttribute="width" constant="60" id="W6W-lv-kBw"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Song's title " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bzj-s9-nsF">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Song's title " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="bzj-s9-nsF">
                                                     <rect key="frame" x="76" y="8" width="283" height="12"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -72,6 +72,7 @@
                                             <outlet property="artistName" destination="sPk-rZ-HvU" id="chd-Ps-dNw"/>
                                             <outlet property="songImage" destination="MMy-UM-2Ve" id="kR3-3l-BPw"/>
                                             <outlet property="songTitle" destination="bzj-s9-nsF" id="kh1-Z3-U7z"/>
+                                            <segue destination="BEc-Kv-S8y" kind="show" id="RFP-LA-lsS"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -93,7 +94,6 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="tableView" destination="tsu-iL-7DT" id="Vfi-xU-r0h"/>
-                        <segue destination="BEc-Kv-S8y" kind="show" identifier="showPlayerViewController" id="uNb-aX-jdk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -113,26 +113,26 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rlA-Si-Xt4">
-                                <rect key="frame" x="137" y="114" width="100" height="100"/>
+                                <rect key="frame" x="138" y="114" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="1Wg-HC-QHW"/>
                                     <constraint firstAttribute="width" constant="100" id="wSg-Cf-UTV"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hlF-wR-LFU">
-                                <rect key="frame" x="143" y="230" width="89" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hlF-wR-LFU">
+                                <rect key="frame" x="32" y="230" width="311" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="songTitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gxk-1j-rJm">
-                                <rect key="frame" x="152" y="259" width="71" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="songTitle" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="gxk-1j-rJm">
+                                <rect key="frame" x="32" y="259" width="311" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qsd-pz-xGw">
-                                <rect key="frame" x="172" y="288" width="30" height="30"/>
+                                <rect key="frame" x="173" y="288" width="30" height="30"/>
                                 <state key="normal" title="play"/>
                                 <connections>
                                     <action selector="playerButtonPressed:" destination="BEc-Kv-S8y" eventType="touchUpInside" id="SyV-iu-fwm"/>
@@ -142,10 +142,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="gxk-1j-rJm" firstAttribute="top" secondItem="hlF-wR-LFU" secondAttribute="bottom" constant="8" id="0OE-F7-gj4"/>
-                            <constraint firstItem="gxk-1j-rJm" firstAttribute="centerX" secondItem="rlA-Si-Xt4" secondAttribute="centerX" id="Jdg-kp-7bX"/>
-                            <constraint firstItem="hlF-wR-LFU" firstAttribute="centerX" secondItem="rlA-Si-Xt4" secondAttribute="centerX" id="Nlc-cn-Uu8"/>
+                            <constraint firstItem="gxk-1j-rJm" firstAttribute="leading" secondItem="fuA-69-nWC" secondAttribute="leadingMargin" constant="16" id="3O2-tD-25s"/>
+                            <constraint firstItem="hlF-wR-LFU" firstAttribute="leading" secondItem="fuA-69-nWC" secondAttribute="leadingMargin" constant="16" id="ZA0-RI-9d6"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="hlF-wR-LFU" secondAttribute="trailing" constant="16" id="bWM-Ax-D1c"/>
                             <constraint firstItem="hlF-wR-LFU" firstAttribute="top" secondItem="rlA-Si-Xt4" secondAttribute="bottom" constant="16" id="h0l-m2-q8O"/>
                             <constraint firstItem="rlA-Si-Xt4" firstAttribute="centerX" secondItem="fuA-69-nWC" secondAttribute="centerX" id="iJN-bf-faZ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="gxk-1j-rJm" secondAttribute="trailing" constant="16" id="lM3-yl-ybR"/>
                             <constraint firstItem="rlA-Si-Xt4" firstAttribute="top" secondItem="NmZ-ex-h3F" secondAttribute="bottom" constant="50" id="mdJ-lI-fyd"/>
                             <constraint firstItem="qsd-pz-xGw" firstAttribute="centerX" secondItem="rlA-Si-Xt4" secondAttribute="centerX" id="u5f-qa-ZKh"/>
                             <constraint firstItem="qsd-pz-xGw" firstAttribute="top" secondItem="gxk-1j-rJm" secondAttribute="bottom" constant="8" id="uj0-gy-TKO"/>
@@ -160,7 +162,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cnv-dg-LFq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="809.5" y="426.5"/>
+            <point key="canvasLocation" x="876.5" y="426.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="v8S-s2-4VH">
